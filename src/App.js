@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios";
+import { useState } from "react";
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1 style={{"text-align":"center"}}>Student Registration</h1>
+      <GetAll/>
     </div>
   );
+}
+
+
+const GetAll = () =>{
+  const [data,setData] = useState([])
+  
+  const x = axios.get("http://localhost:8080/api/v1/student")
+  .then(
+    response => setData(response.data)
+  )
+
+  return( 
+  <div>
+    {data.map(e=><Student name={e.name} email ={e.email} dob = {e.dob} age = {e.age} />)}
+  </div>
+  )
+}
+
+const Student = ({name,email,dob,age}) =>{
+  return(
+    <div>{name} {email} {dob} {age}</div>
+  )
 }
 
 export default App;

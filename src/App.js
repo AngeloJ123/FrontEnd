@@ -16,7 +16,7 @@ function App() {
 const GetAll = () =>{
   const [data,setData] = useState([])
   
-  const x = axios.get("http://localhost:8080/api/v1/student")
+  axios.get("http://localhost:8080/api/v1/student")
   .then(
     response => setData(response.data)
   )

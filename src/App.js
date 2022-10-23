@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 
 
@@ -15,11 +15,11 @@ function App() {
 
 const GetAll = () =>{
   const [data,setData] = useState([])
-  
+  useEffect(() ->{
   axios.get("http://ec2-3-209-181-196.compute-1.amazonaws.com:8080/api/v1/student")
   .then(
     response => setData(response.data)
-  )
+    )},[])
 
   return( 
   <div>
